@@ -4,7 +4,7 @@ import { Construct } from 'constructs';
 import * as apigateway from "aws-cdk-lib/aws-apigateway";
 import * as lambda from "aws-cdk-lib/aws-lambda";
 import * as s3 from "aws-cdk-lib/aws-s3";
-import { Cors } from 'aws-cdk-lib/aws-apigateway';
+import { Cors, EndpointType } from 'aws-cdk-lib/aws-apigateway';
 
 export class TuringqDemoStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
@@ -25,7 +25,12 @@ export class TuringqDemoStack extends Stack {
    
     const api = new apigateway.RestApi(this, "api", {
       restApiName: "TuringQDemoService",
-      description: "TuringQ Demo Service."
+      description: "TuringQ Demo Service.",
+      endpointConfiguration: {
+        types: [
+          EndpointType.REGIONAL
+        ]
+      }   
     });
 
     const getIntegration = new apigateway.LambdaIntegration(handler, {

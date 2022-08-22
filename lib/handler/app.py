@@ -17,9 +17,9 @@ def handler(event, context):
 
     response = {
         "headers": {
-            'Access-Control-Allow-Headers': 'application/json',
+            'Access-Control-Allow-Headers': '*',
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'OPTIONS,GET'
+            'Access-Control-Allow-Methods': '*'
         },
         "statusCode": 200,
         "body": json.dumps(
